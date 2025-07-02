@@ -7,21 +7,18 @@ use App\Models\Produk;
 
 class ProdukController extends Controller
 {
-    public function index(Request $request)
+    public function cekProdukPage()
     {
-        $search = $request->input('search');
-        $entries = $request->input('entries', 10);
+        return view('reseller.cekproduk');
+    }
 
-        $query = Produk::query();
+    public function getProduk(Request $request)
+    {
+        $perPage = $request->input('per_page', 10);
 
-        if ($search) {
-            $query->where('kode', 'like', "%$search%")
-                  ->orWhere('nama', 'like', "%$search%");
-        }
-
-        $produk = $query->orderBy('nama')->paginate($entries);
+        $produk = Produk::select('kode', 'nama', 'harga_jual', 'nominal', 'gangguan')
+            ->paginate($perPage);
 
         return response()->json($produk);
     }
 }
-// This controller handles the retrieval of products with optional search functionality.
