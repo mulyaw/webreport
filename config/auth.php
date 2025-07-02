@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+         // tambahkan ini untuk reseller
+    'reseller' => [
+        'driver' => 'session',
+        'provider' => 'resellers',
+    ],
     ],
 
     /*
@@ -64,6 +69,11 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+         // tambahkan ini untuk reseller
+    'resellers' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Reseller::class,
+    ],
 
         // 'users' => [
         //     'driver' => 'database',

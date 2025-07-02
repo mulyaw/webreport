@@ -79,7 +79,8 @@
                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     <span>Dashboard</span>
                 </a>
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('reseller.cekproduk') }}" class="sidebar-link active">
+
                      <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     <span>Cek Produk</span>
                 </a>
@@ -118,8 +119,11 @@
                     <button id="open-sidebar-btn" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
-                    <h1 class="text-xl font-bold text-gray-800 dark:text-white hidden sm:block">Halo, (Nama Pelanggan)</h1>
-                    <form method="POST" action="#">
+                    <h1 class="text-xl font-bold text-gray-800 dark:text-white hidden sm:block">
+    Halo, {{ $reseller->nama }}
+</h1>
+                    <form action="{{ route('reseller.logout') }}" method="POST" class="inline">
+                        @csrf
                         <button type="submit" class="bg-red-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition duration-200">
                             Logout
                         </button>
@@ -137,7 +141,9 @@
                             <div class="card lg:col-span-1 bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between">
                                 <div>
                                     <p class="text-lg opacity-80">Saldo Utama</p>
-                                    <p class="text-4xl font-bold mt-2">Rp 1.250.000</p>
+                                    <p class="text-4xl font-bold mt-2">
+    Rp {{ number_format($reseller->saldo, 0, ',', '.') }}
+</p>
                                 </div>
                                 <button class="mt-6 w-full bg-white text-blue-600 font-bold py-3 px-4 rounded-lg hover:bg-blue-50 transition duration-200 flex items-center justify-center space-x-2">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
@@ -151,7 +157,9 @@
                                         <p class="text-sm text-gray-500 dark:text-gray-400">Komisi</p>
                                     </div>
                                     <div class="flex items-baseline space-x-2 mt-1">
-                                        <p class="text-2xl font-bold text-gray-900 dark:text-white">Rp 375.000</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+    Rp {{ number_format($reseller->komisi, 0, ',', '.') }}
+</p>
                                         <div class="flex items-center text-sm font-semibold text-green-500"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg><span>5.2%</span></div>
                                     </div>
                                 </div>
@@ -161,7 +169,10 @@
                                         <p class="text-sm text-gray-500 dark:text-gray-400">Poin</p>
                                     </div>
                                      <div class="flex items-baseline space-x-2 mt-1">
-                                        <p class="text-2xl font-bold text-gray-900 dark:text-white">5.200</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white">
+    {{ number_format($reseller->poin) }}
+</p>
+
                                         <div class="flex items-center text-sm font-semibold text-red-500"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span>1.8%</span></div>
                                     </div>
                                 </div>
