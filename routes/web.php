@@ -19,7 +19,9 @@ Route::middleware([ResellerAuth::class])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Halaman cek produk
     Route::get('/reseller/cekproduk', [ProdukController::class, 'cekProdukPage'])->name('reseller.cekproduk');
+
+    // Endpoint JSON untuk data produk
     Route::get('/api/reseller/produk', [ProdukController::class, 'getProduk'])->name('reseller.cekproduk.data');
 });
-// Route untuk halaman utama reseller
