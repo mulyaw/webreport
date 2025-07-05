@@ -6,6 +6,8 @@ use App\Http\Middleware\ResellerAuth;
 use App\Http\Middleware\RedirectIfResellerAuthenticated;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\MutasiTransaksiController;
+
 
 // Halaman login reseller
 Route::middleware([RedirectIfResellerAuthenticated::class])->group(function () {
@@ -24,4 +26,8 @@ Route::middleware([ResellerAuth::class])->group(function () {
 
     // Endpoint JSON untuk data produk
     Route::get('/api/reseller/produk', [ProdukController::class, 'getProduk'])->name('reseller.cekproduk.data');
+
+    Route::get('/reseller/mutasitransaksi', [MutasiTransaksiController::class, 'index'])->name('mutasi.transaksi');
+    Route::get('/api/reseller/mutasitransaksi', [MutasiTransaksiController::class, 'getData'])->name('mutasi.transaksi.data');
+
 });

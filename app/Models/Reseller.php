@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Reseller extends Model
+class Reseller extends Authenticatable
 {
     protected $table = 'reseller';
     protected $primaryKey = 'kode';
-    public $incrementing = false; // karena 'kode' bukan auto increment
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
